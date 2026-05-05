@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, Header, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import tempfile
 import os
 import re
@@ -10,8 +11,15 @@ app = FastAPI(
     title="Police Report OCR API",
     description="API สำหรับสกัดข้อมูลจากใบแจ้งความคนหายด้วย Typhoon OCR",
     version="1.0.0"
-)
 
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # ยอมรับทุกเว็บไซต์ (หรือจะระบุแค่เว็บเพื่อนก็ได้)
+    allow_credentials=True,
+    allow_methods=["*"], # ยอมรับทุก Method (POST, GET, etc.)
+    allow_headers=["*"], # ยอมรับทุก Header
+)
 # ==========================================
 # Regex
 # ==========================================
