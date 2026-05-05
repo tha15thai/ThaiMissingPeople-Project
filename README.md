@@ -26,7 +26,7 @@ API สำหรับระบบสกัดข้อมูลจากใบ�
 git clone <YOUR_REPO_URL>
 cd <YOUR_PROJECT_FOLDER>
 pip install -r requirements.txt
-
+```
 
 
 
