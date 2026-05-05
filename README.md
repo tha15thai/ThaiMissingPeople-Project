@@ -26,3 +26,48 @@ API สำหรับระบบสกัดข้อมูลจากใบ�
 git clone <YOUR_REPO_URL>
 cd <YOUR_PROJECT_FOLDER>
 pip install -r requirements.txt
+
+
+
+
+## 🔗 การเชื่อมต่อ API
+
+ระบบนี้เชื่อมต่อกับ OCR Backend API ที่พัฒนาด้วย FastAPI โดยทำการดึงข้อมูลภาพและสกัดเป็นโครงสร้าง JSON 
+
+- **Base URL (Production):** `https://police-ocr-api.onrender.com`
+- **Swagger UI (สำหรับเทส API):** `https://police-ocr-api.onrender.com/docs`
+
+### 📌 Endpoint
+- **Path:** `/api/extract-report`
+- **Method:** `POST`
+- **Content-Type:** `multipart/form-data`
+
+#### 📦 Request Payload (Body)
+| Key | Type | Description |
+| :--- | :--- | :--- |
+| `file` | File | ไฟล์ภาพใบแจ้งความที่ต้องการสกัดข้อมูล (รองรับ `.jpg`, `.png`, `.pdf`) |
+
+*หมายเหตุ: ไม่ต้องส่ง API Key ใน Header เนื่องจากระบบทำการจัดการรหัสความปลอดภัยไว้ในฝั่งเซิร์ฟเวอร์เรียบร้อยแล้ว*
+
+#### 📤 Example Response Success 200 OK
+เมื่อส่งไฟล์สำเร็จ ระบบจะส่งคืนโครงสร้างข้อมูล (JSON) สำหรับนำไปแสดงผลดังนี้:
+
+```json
+{
+  "status": "success",
+  "data": {
+    "reporter": {
+      "name": "สมชาย รักดี",
+      "age": "45",
+      "id_card": "1123456789012",
+      "address": "99/8 หมู่ 5 ต.ตลาดขวัญ อ.เมือง จ.นนทบุรี",
+      "phone": "0819998888"
+    },
+    "missing_person": {
+      "name": "ใจดี รักดี",
+      "age": "12",
+      "details": "อายุ 12 ปี ได้หายออกจากบ้านพัก รูปร่างท้วม ผิวขาว ผมสั้น"
+    }
+  },
+  "raw_text": "(ข้อความดิบที่ AI อ่านได้ทั้งหมด)"
+}
