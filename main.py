@@ -16,7 +16,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], # ยอมรับทุกเว็บไซต์ (หรือจะระบุแค่เว็บเพื่อนก็ได้)
-    allow_credentials=False,
+    allow_credentials=True,
     allow_methods=["*"], # ยอมรับทุก Method (POST, GET, etc.)
     allow_headers=["*"], # ยอมรับทุก Header
 )
