@@ -15,8 +15,12 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # ยอมรับทุกเว็บไซต์ (หรือจะระบุแค่เว็บเพื่อนก็ได้)
-    allow_credentials=True,
+    allow_origins=[
+        "http://localhost:3000",  
+        "http://127.0.0.1:5501",   # เผื่อเพื่อนรันผ่าน Live Server
+        "*"                        # เผื่อเว็บอื่นๆ
+    ],
+    allow_credentials=False,
     allow_methods=["*"], # ยอมรับทุก Method (POST, GET, etc.)
     allow_headers=["*"], # ยอมรับทุก Header
 )
