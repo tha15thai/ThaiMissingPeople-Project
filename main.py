@@ -15,10 +15,10 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[""],
+    allow_origins=[""],  # อนุญาตทุก origin
     allow_credentials=False,
-    allow_methods=[""], # ยอมรับทุก Method (POST, GET, etc.)
-    allow_headers=[""], # ยอมรับทุก Header
+    allow_methods=[""],  # ทุก method
+    allow_headers=["*"],  # ทุก header
 )
 # ==========================================
 # Regex
